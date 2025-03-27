@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import AuthService from '../services/AuthService';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import api from '../utils/api';
 
 // Componentes estilizados
 const LoginContainer = styled.div`
@@ -174,7 +175,7 @@ const LoginPage = () => {
     
     try {
       setIsLoading(true);
-      const response = await axios.post('http://localhost:3001/auth/login', { email, password } );
+      const response = await api.post('/auth/login', { email, password } );
       
       if(response.status === 201) {
         saveToken(response.data["data"]["token"]);

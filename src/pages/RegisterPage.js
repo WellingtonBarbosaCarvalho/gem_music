@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthService from '../services/AuthService';
+import api from '../utils/api';
 
 const API_BASE_URL = "http://localhost:3001/api";
 
@@ -187,14 +188,11 @@ const RegisterPage = () => {
     setError('');
     
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/register`, {
+      const response = await api.post(`/auth/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password
       });
-
-      console.log(response);
-      
 
       const token = response.token;
       localStorage.setItem('token', JSON.stringify(token));
