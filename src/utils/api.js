@@ -3,10 +3,9 @@ import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
 const token = cookies.get('userToken');
-console.log(token);
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://backend-gem-music-4069.fly.dev',
   headers: {
     Authorization: token ? `Bearer ${token} ` : '',
   }
